@@ -1,16 +1,19 @@
-$(function () {
-    var user =decodeURI(getCookie("username"));
-    $(".nameTop").html('<a href="edituser.html">'+user+'</a>'+' <span class="caret"></span>')
-    function getCookie(sName) {
-        var aCookie = document.cookie.split('; ');
-        for (var i = 0; i < aCookie.length; i++) {
-            var aCrumb = aCookie[i].split('=');
-            if (sName == aCrumb[0])
-                return decodeURI(aCrumb[1]);
-        }
-        return '';
-    }
+var user = decodeURI(getCookie("username"));
+$(".nameTop").html('<a href="edituser.html">' + user + '</a>' + ' <span class="caret"></span>')
 
+function getCookie(sName) {
+    var aCookie = document.cookie.split('; ');
+    for (var i = 0; i < aCookie.length; i++) {
+        var aCrumb = aCookie[i].split('=');
+        if (sName == aCrumb[0])
+            return decodeURI(aCrumb[1]);
+    }
+    return '';
+}
+$(function () {
+
+    //js初始化
+    toastr.options.positionClass = 'toast-center-center';
     // nav收缩展开
     $('.nav-item>a').on('click', function () {
         if (!$('.nav').hasClass('nav-mini')) {
@@ -82,7 +85,7 @@ function loadInner(sId) {
             <span> / </span>
             <span> 内容系统 </span>
             <span> / </span>
-            <span> 文章分类 </span>
+            <span>  分类管理 </span>
         `);
             break;
         case '#comment':
@@ -93,7 +96,7 @@ function loadInner(sId) {
                     <span> / </span>
                     <span> 内容系统 </span>
                     <span> / </span>
-                    <span> 评论 </span>
+                    <span> 评论管理 </span>
                 `);
             break;
         case '#userlist':
@@ -104,7 +107,7 @@ function loadInner(sId) {
                     <span> / </span>
                     <span> 用户 </span>
                     <span> / </span>
-                    <span> 用户列表 </span>
+                    <span> 网站用户 </span>
                 `);
             break;
         case '#adminlist':
@@ -115,7 +118,7 @@ function loadInner(sId) {
                     <span> / </span>
                     <span> 用户 </span>
                     <span> / </span>
-                    <span> 管理员列表 </span>
+                    <span>  后台管理员 </span>
                 `);
             break;
         case '#siteSettings':
@@ -124,7 +127,7 @@ function loadInner(sId) {
             $('#titleTop').html(`
                 <span class="zhuye"> 主页 </span>
                 <span> / </span>
-                <span> 系统设置 </span>
+                <span> 设置 </span>
                 <span> / </span>
                 <span> 网站设置 </span>
             `);
@@ -135,9 +138,9 @@ function loadInner(sId) {
             $('#titleTop').html(`
                     <span class="zhuye"> 主页 </span>
                     <span> / </span>
-                    <span> 系统设置 </span>
+                    <span> 设置 </span>
                     <span> / </span>
-                    <span> 用户信息 </span>
+                    <span> 我的资料 </span>
                 `);
             break;
         case '#changePwd':
@@ -146,7 +149,7 @@ function loadInner(sId) {
             $('#titleTop').html(`
                 <span class="zhuye"> 主页 </span>
                 <span> / </span>
-                <span> 系统设置 </span>
+                <span> 设置 </span>
                 <span> / </span>
                 <span> 修改密码 </span>
             `);
@@ -167,7 +170,6 @@ $('.jumpMenu').on('click', 'li', function () {
 });
 
 //分页器
-
 var lis = document.getElementsByClassName('tab');
 for (var i = 0; i < lis.length; i++) {
     lis[i].onclick = function () {
@@ -179,7 +181,6 @@ for (var i = 0; i < lis.length; i++) {
     }
 }
 
-//statusfilter
 function statusFilter(status, i) {
     switch (status) {
         case 'true':
@@ -193,7 +194,6 @@ function statusFilter(status, i) {
     }
 }
 
-//sexfilter
 function sexFilter(sex) {
     switch (sex) {
         case '0':
@@ -204,3 +204,22 @@ function sexFilter(sex) {
             break;
     }
 }
+//退出
+$("#tuichu").click(function () {
+    toastr.info("欢迎" + user + "下次登录!");
+    $.cookie("a", "", {
+        expires: -1
+    });
+    $.cookie("b", "", {
+        expires: -1
+    });
+    $.cookie("id", "", {
+        expires: -1
+    });
+    $.cookie("username", "", {
+        expires: -1
+    });
+    setTimeout(function () {
+        location.href = '/blogsProject/blogs/';
+    }, 1200);
+})
