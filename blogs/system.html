@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-fileinput.css">
+    <link rel="stylesheet" type="text/css" href="css/nav.css">
+    <link rel="stylesheet" type="text/css" href="fonts/iconfont.css">
+    <link rel="stylesheet" href="css/public.css">
+    <link rel="stylesheet" href="fonts/glyphicons-halflings-regular.woff2">
+    <link rel="stylesheet" href="css/toastr.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/toastr.js"></script>
+    <script src="http://apps.bdimg.com/libs/jquery.cookie/1.4.1/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+    <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+    <style>
+        #topName {
+            color: rgb(230, 227, 227);
+            font-size: 17px;
+            display: inline-block;
+            line-height: 1;
+            font-weight: bold;
+        }
+        .nav-item.nav-show ul{
+            display: none;
+        }
+        .nav-item>ul a{
+            padding-left: 50px;
+        }
+        .li-item>ul a{
+            padding-left: 65px;
+        }
+        .nav-show{
+            color: #FFF;
+            background: rgba(49, 135, 146, 0.2);
+        }
+        .nav-item>ul a:hover, .li-item>ul a:hover{
+            color: #FFF;
+            background: rgba(59, 240, 253, 0.6);
+        }
+        .cont,.nav_right,.row{
+            height: 100%;
+            /* overflow: hidden; */
+        }
+        .nav_right{
+            padding-left: 0;
+            height: 50px;
+            border-bottom: 1px solid #eee;
+        }
+        .liBox{
+            width: 60px;
+            text-align: center;
+        }
+        .newForm{
+            border: none;
+            box-shadow:none;
+            -webkit-box-shadow:none;
+        }
+        .nav_right li,.newForm>a{
+            text-align: center;
+            height: 50px;
+            line-height: 50px;
+        }
+        .formBox{
+            display: inline-block;
+        }
+        .rowLeft,.rowRight{
+            text-align: center;
+            display: flex;
+            flex-direction: row;
+        }
+        .rowBox,.rowLeft{
+            margin-right: 0px;
+            margin-left: 0px;
+        }
+        .dropdown-toggle{
+            border: none;
+            background: #fff;
+        }
+        .dropdown-toggle:hover{
+            background: #fff;
+        }
+        .rowRight{
+            justify-content: flex-end;
+            padding: 0;
+        }
+        .rowLeft>li.active,.rowRight>li.active{
+            width: 30%;
+            height: 100%;
+            border-top: 2px solid #f00;
+            transition: 0.2s all linear;
+        }
+        .breadcrumb {
+            padding: 0;
+            padding-left:20px;
+            margin-bottom: 0px;
+            list-style: none;
+            background-color: #fff;
+            border-radius: 4px;
+            border-bottom: 1px solid #eee;
+        }
+        .liNew{
+            width: 85px;
+        }
+        #main{
+            padding-top: 15px;
+            padding-left: 15px;
+            background: #eee;
+            height:-webkit-calc(100% - 100px);
+            height: calc(100% - 100px);
+        }
+        #article,#setting,#info,#changePass{
+            margin-bottom: 15px;
+            padding-top: 15px;
+            background: #fff;
+            border-radius: 2px;
+        }
+        #setting,#info{
+            width: 100%;
+            overflow-x: hidden;
+            padding-top: 0px;
+        }
+        #article{
+            width:-webkit-calc(100% - 15px);
+            width: calc(100% - 15px);
+        }
+        #changePass{
+            width: calc(100% - 15px);
+            overflow-y:auto;
+            overflow-x:hidden;
+            padding-top: 0px;
+        }
+        label{
+            font-weight: 400!important;
+        }
+        .rowHeight{
+            height: 35px;
+            margin-bottom: 10px;
+        }
+        #article>form{
+            height: 100px;
+            border-bottom: 1px solid #f6f6f6;
+        }
+        .labelLeft{
+            margin-left: 15px;
+        }
+        .form-control{
+            border-radius: 2px;
+            border-color: #eee;
+            color:#989898;
+        }
+        .btnSize{
+            width: 55px;
+        }
+        .rightText{
+            height: 35px;
+            line-height: 35px;
+            color: #999;
+            padding-left: 0;
+        }
+        .rightText span{
+            padding-right: 18px;
+            color:#666;
+        }
+        .card_header{
+            height: 42px;
+            line-height: 42px;
+            padding: 0 15px;
+            border-bottom: 1px solid #f6f6f6;
+            color: #333;
+            border-radius: 2px 2px 0 0;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        #setting .control-label,#info .control-label,#changePass .control-label{
+            width: 120px;
+            margin-left: 50px;
+        }
+        .btnh{
+            margin-left: 25px;
+            height: 39px;
+        }
+        .btnl{
+            margin-left: 15px;
+            height: 39px;
+        }
+        .form-group{
+            display: flex;
+        }
+        .row{
+            margin-left: 0;
+            margin-right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="modal fade" id="myModal_articleAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" style="width: 500px">
+            <div class="modal-content" style="width: 500px">
+                <div class="modal-header1" style="width: 500px">
+                    <button type="button" style="color: #fff" class="close closed1" data-dismiss="modal"
+                        aria-hidden="true">×</button>
+                    <h4 class="modal-title1" id="Modal_article_title">添加文章</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="dio-form">
+                        <div class="dio-form-item">
+                            <div class="dio-form-label">
+                                文章标题
+                            </div>
+                            <div class="dio-form-inline">
+                                <input type="text" name="" id="Modal_article_tit" placeholder="请输入文章标题"
+                                    class="dio-form-input">
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="dio-form-item">
+                            <div class="dio-form-label">
+                                发布人
+                            </div>
+                            <div class="dio-form-inline">
+                                <input type="text" name="" id="Modal_article_author" placeholder="请输入发布人"
+                                    class="dio-form-input">
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="dio-form-item">
+                            <div class="dio-form-label">
+                                文章内容
+                            </div>
+                            <div class="dio-form-inline">
+                                <textarea name="" id="Modal_article_content" cols="30" rows="10"
+                                    style="outline:none"></textarea>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="mt15">
+                            <span class="dio-form-label">文章标签</span>
+                            <div class="dropdown select-s">
+                                <div data-toggle="dropdown" class="select-input" style="width: 178px"> <span
+                                        id="Modal_article_tagChecked" value="">请选择标签</span> <i
+                                        class="glyphicon glyphicon-chevron-down ml30"></i></div>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li role="presentation " class="dropdown-header caidantitle">下拉菜单标题</li>
+                                    <li role="presentation" id="Modal_article_tagContent">
+
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dio-form-item mt15">
+                            <div class="dio-form-label">
+                                发布状态
+                            </div>
+                            <input type="checkbox" id="articleFabu">已发布
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="articleSure">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal_classifyAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" style="width: 500px">
+            <div class="modal-content" style="width: 500px">
+                <div class="modal-header1" style="width: 500px">
+                    <button type="button" style="color: #fff" class="close closed1" data-dismiss="modal"
+                        aria-hidden="true">×</button>
+                    <h4 class="modal-title1">添加分类</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="dio-form" style="height: 50px">
+                        <div class="dio-form-item">
+                            <div class="dio-form-label">
+                                分类名称
+                            </div>
+                            <div class="dio-form-inline">
+                                <input type="text" name="" placeholder="请输入名称" class="dio-form-input"
+                                    id="classifyInput">
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="classifySure">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal_obRevise" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" style="width: 500px">
+            <div class="modal-content" style="width: 500px">
+                <div class="modal-header1" style="width: 500px">
+                    <button type="button" style="color: #fff" class="close closed1" data-dismiss="modal"
+                        aria-hidden="true">×</button>
+                    <h4 class="modal-title1">修改评论</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="dio-form" style="height: 50px">
+                        <div class="dio-form-item">
+                            <div class="dio-form-label">
+                                评论内容
+                            </div>
+                            <div class="dio-form-inline">
+                                <input type="text" name="" id="Modal_ob_content" placeholder="请输入名称"
+                                    class="dio-form-input">
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="obSure">提交更改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal_userAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" style="width: 500px">
+            <div class="modal-content" style="width: 500px">
+                <div class="modal-header1" style="width: 500px">
+                    <button type="button" style="color: #fff" class="close closed1" data-dismiss="modal"
+                        aria-hidden="true">×</button>
+                    <h4 class="modal-title1" id="Modal_user_title">添加用户</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="dio-form">
+                        <div class="dio-form-item">
+                            <div class="dio-form-label">
+                                用户名
+                            </div>
+                            <div class="dio-form-inline">
+                                <input type="text" name="" id="Modal_user_username" placeholder="请输入用户名" class="dio-form-input">
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="dio-form-item">
+                            <div class="dio-form-label">
+                                手机号码
+                            </div>
+                            <div class="dio-form-inline">
+                                <input type="text" name="" id="Modal_user_phone" placeholder="请输入号码" class="dio-form-input">
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="dio-form-item">
+                            <div class="dio-form-label">
+                                邮箱
+                            </div>
+                            <div class="dio-form-inline">
+                                <input type="text" name="" id="Modal_user_email" placeholder="请输入邮箱" class="dio-form-input">
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="dio-form-item">
+                            <div class="dio-form-label">
+                                头像
+                            </div>
+                            <div class="dio-form-inline">
+                                <input type="text" name="" id="Modal_user_headimg" placeholder="" class="dio-form-input">
+                            </div>
+                            <span class="btn btn-search file-btn btn-primary">
+                                <span>上传图片</span>
+                                    <input type="file" class="file-input" id="userAddhead">
+                            </span>
+                            
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="dio-form-item">
+                            <span class="dio-form-label">选择性别</span>
+                            <div class="dropdown wenzhangbiaoqian" style="width: 159px; border:none;line-height: 30px">
+                                <div data-toggle="dropdown" id="dropdownMenu1" class="dio-form-input"> 
+                                    <span id="sexChecked"
+                                        value="" dataTagsId="" style="width: 159px;line-height: 38px">请选择标签</span> <i
+                                        class="glyphicon glyphicon-chevron-down ml30"></i></div>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li role="presentation " class="dropdown-header caidantitle">下拉菜单标题</li>
+                                    <li role="presentation" id="sexContent">
+                                        <a class="menuSex" role="menuitem" tabindex="-1" dataId="0">男</a>
+                                        <a class="menuSex" role="menuitem" tabindex="-1" dataId="1">女</a>
+                                    </li>
+                                </div>
+
+
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="userSure">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal_adminlistAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" style="width: 500px">
+            <div class="modal-content" style="width: 500px">
+                <div class="modal-header1" style="width: 500px">
+                    <button type="button" style="color: #fff" class="close closed1" data-dismiss="modal"
+                        aria-hidden="true">×</button>
+                    <h4 class="modal-title1" id="Modal_admin_title">添加管理员</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="dio-form">
+                        <div class="dio-form-item">
+                            <div class="dio-form-label">
+                                登录名
+                            </div>
+                            <div class="dio-form-inline">
+                                <input type="text" name="" id="Modal_admin_username" placeholder="请输入用户名" class="dio-form-input">
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="dio-form-item">
+                            <div class="dio-form-label">
+                                手机
+                            </div>
+                            <div class="dio-form-inline">
+                                <input type="text" name="" id="Modal_admin_phone" placeholder="请输入号码" class="dio-form-input">
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="dio-form-item">
+                            <div class="dio-form-label">
+                                邮箱
+                            </div>
+                            <div class="dio-form-inline">
+                                <input type="text" name="" id="Modal_admin_email" placeholder="请输入邮箱" class="dio-form-input">
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="mt15">
+                            <span class="dio-form-label">角色</span>
+                            <div class="dropdown select-s">
+                                <div data-toggle="dropdown" class="select-input" style="width: 178px"> <span id="modal_role_roleChecked" value="">请选择标签</span> <i
+                                        class="glyphicon glyphicon-chevron-down ml30"></i></div>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                    <li role="presentation " class="dropdown-header caidantitle">下拉菜单标题</li>
+                                    <li role="presentation">
+                                        <a role="menuitem" class="modal_role_menuRole" tabindex="-1" dataId='1'>管理员</a>
+                                        <a role="menuitem" class="modal_role_menuRole" tabindex="-1" dataId='2'>超级管理员</a>
+                                        <a role="menuitem" class="modal_role_menuRole" tabindex="-1" dataId='3'>纠错员</a>
+                                        <a role="menuitem" class="modal_role_menuRole" tabindex="-1" dataId='4'>采购员</a>
+                                        <a role="menuitem" class="modal_role_menuRole" tabindex="-1" dataId='5'>推销员</a>
+                                        <a role="menuitem" class="modal_role_menuRole" tabindex="-1" dataId='6'>运营人员</a>
+                                        <a role="menuitem" class="modal_role_menuRole" tabindex="-1" dataId='7'>编辑</a>
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="dio-form-item mt15">
+                            <div class="dio-form-label">
+                                发布状态
+                            </div>
+                            <input type="checkbox" id="adminFabu">已发布
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="adminSure">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cont">
+        <div class="row rowBox">
+            <div class="nav col-xs-2 nav_list">
+                <div class="nav-top">
+                    <div id="mini" style="border-bottom:1px solid rgba(255,255,255,.1)"><img src="images/mini.png">
+                        <h1 id="topName">后台管理系统</h1>
+                    </div>
+                </div>
+                <ul>
+                    <li class="nav-item">
+                        <a href="javascript:;"><i class="glyphicon glyphicon-home"></i><span>主页</span><i class="my-icon nav-more"></i></a>
+                        <ul>
+                            <li><a href="javascript:;"><span>网站设置</span></a></li>
+                            <li><a href="javascript:;"><span>友情链接</span></a></li>
+                            <li><a href="javascript:;"><span>分类管理</span></a></li>
+                            <li><a href="javascript:;"><span>系统日志</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="javascript:;"><i class="glyphicon glyphicon-random"></i><span>组件</span><i class="my-icon nav-more"></i></a>
+                        <ul>
+                            <li><a href="javascript:;"><span>站内新闻</span></a></li>
+                            <li><a href="javascript:;"><span>站内公告</span></a></li>
+                            <li><a href="javascript:;"><span>登录日志</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="javascript:;"><i class="glyphicon glyphicon-th-large"></i><span>应用</span><i class="my-icon nav-more"></i></a>
+                        <ul>
+                            <li class="li-item"><a href="javascript:;"><span>内容系统</span><i class="my-icon nav-more"></i></a>
+                                <ul class="jumpMenu">
+                                    <li id="articleList"><a href="javascript:;"><span>文章列表</span></a>
+                                    <li id="classify"><a href="javascript:;"><span>分类管理</span></a>
+                                    <li id="comment"><a href="javascript:;"><span>评论管理</span></a>
+                                </ul>
+                            </li>
+                            <li class="li-item"><a href="javascript:;"><span>社区系统</span><i class="my-icon nav-more"></i></a>
+                                <ul>
+                                    <li><a href="javascript:;"><span>帖子列表</span></a>
+                                    <li><a href="javascript:;"><span>回帖列表</span></a>
+                                </ul>
+                            </li>
+                            <li><a href="javascript:;"><span>消息中心</span></a></li>
+                            <li><a href="javascript:;"><span>工单系统</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="javascript:;"><i class="glyphicon glyphicon-user"></i><span>用户</span><i class="my-icon nav-more"></i></a>
+                        <ul class="jumpMenu">
+                            <li id="userlist"><a href="javascript:;"><span>网站用户</span></a></li>
+                            <li id="adminlist"><a href="javascript:;"><span>后台管理员</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="javascript:;"><i class="glyphicon glyphicon-cog"></i><span>设置</span><i class="my-icon nav-more"></i></a>
+                        <ul>
+                            <li class="li-item"><a href="javascript:;"><span>系统设置</span><i class="my-icon nav-more"></i></a>
+                                <ul class="jumpMenu">
+                                    <li id="siteSettings"><a href="javascript:;"><span>网站设置</span></a>
+                                    <li><a href="javascript:;"><span>邮件服务</span></a>
+                                </ul>
+                            </li>
+                            <li class="li-item"><a href="javascript:;"><span>我的设置</span><i class="my-icon nav-more"></i></a>
+                                <ul class="jumpMenu">
+                                    <li id="grundInfo"><a href="javascript:;"><span>基本资料</span></a>
+                                    <li id="changePwd"><a href="javascript:;"><span>修改密码</span></a>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="nav_right">
+                <div class="row">
+                    <ul class="row rowLeft col-xs-5">
+                        <li class="liBox tab"><a href="##"><i class="glyphicon glyphicon-th-list"></i></a></li>
+                        <li class="liBox tab"><a href="##"><i class="glyphicon glyphicon-globe"></i></a></li>
+                        <li class="liBox tab"><a href="##"><i class="glyphicon glyphicon-repeat"></i></a></li>
+                        <li class="liBox tab"><a href="##" class="formBox"><input type="text" class="form-control newForm"
+                                    id="name" placeholder="搜索..."></a></li>
+                    </ul>
+                    <ul class="row rowRight col-xs-5">
+                        <li class="liBox tab"><a href="##"><i class="glyphicon glyphicon-bell"></i></a></li>
+                        <li class="liBox tab"><a href="##"><i class="glyphicon glyphicon-pencil"></i></a></li>
+                        <li class="liBox tab"><a href="##"><i class="glyphicon glyphicon-tags"></i></a></li>
+                        <li class="liBox tab"><a href="##"><i class="glyphicon glyphicon-fullscreen"></i></a></li>
+                        <li class="liNew tab">
+                            <div class="dropdown">
+                                <button type="button" class="btn dropdown-toggle nameTop" id="dropdownMenu1" data-toggle="dropdown">
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                    <li role="presentation">
+                                        <a role="menuitem" tabindex="-1" href="#">基本资料</a>
+                                    </li>
+                                    <li role="presentation">
+                                        <a role="menuitem" tabindex="-1" href="#">修改密码</a>
+                                    </li>
+                                    <li role="presentation" class="divider"></li>
+                                    <li role="presentation">
+                                        <a role="menuitem" tabindex="-1" href="#">退出</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="liBox tab"><a href="##"><i class="glyphicon glyphicon-tasks"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="nav_right" id="titleTop">
+            </div>
+            <div id="main" class="row"></div>
+        </div>
+    </div>
+    <script src="js/system.js"></script>
+    <div id="JSwenjian"></div>
+</body>
+
+</html>

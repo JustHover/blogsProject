@@ -1,0 +1,83 @@
+<div id="info">
+    <div class="card_header">设置我的资料</div>
+    <form class="form-horizontal" role="form" id="checkSubmit">
+        <div class="form-group">
+            <label for="role" class="col-sm-1 control-label">我的角色</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="role" disabled value="超级管理员">
+            </div>
+            <div class="rightText col-sm-4">当前角色不可更改为其它角色</div>
+        </div>
+        <div class="form-group">
+            <label for="username" class="col-sm-1 control-label">用户名</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="username" readonly value="我呀我呀">
+            </div>
+            <div class="rightText col-sm-4">不可修改。一般用于后台登入名</div>
+        </div>
+        <div class="form-group">
+            <label for="petName" class="col-sm-1 control-label">昵称</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="petName" value="还是我呀">
+            </div>
+        </div>
+        <div class="form-group group-flex">
+            <label for="lastname" class="col-sm-1 control-label">性别</label>
+            <!-- <div class="form-group"> -->
+            <div class="col-sm-2">
+                <label class="radio-inline">
+                    <input type="radio" value="0" name="sex" /> 男
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" value="1" name="sex" /> 女
+                </label>
+            </div>
+            <!-- </div> -->
+        </div>
+        <div class="form-group">
+            <label for="touImg" class="col-sm-1 control-label">头像</label>
+            <div class="col-sm-2">
+                <input type="text" name="" id="imgText" placeholder="" class="form-control">
+            </div>
+            <span class="btn btn-search file-btn btn-primary">
+                <span>上传图片</span>
+                <input type="file" class="file-input" id="addImg">
+            </span>
+            <p class="popover-options" id="haveLook">
+                <a href="##" type="button" id="btnLook" class="btn btn-primary btnnew" title="我的帅照"  
+                   data-container="body"  data-placement="right" data-toggle="popover" data-content="<p id='havelook'>Popover 中的一些内容 —— options 方法</p>">查看图片</a>
+            </p>
+            <!-- <button id="haveLook" class="btn btn-primary btnn">查看图片</button> -->
+            <!-- <button type="button" class="btn btn-primary btnh popover-toggle" 
+                title="Popover title" data-container="body" 
+                data-toggle="popover" data-placement="right" 
+                data-content="右侧的 Popover 中的一些内容 —— toggle 方法">
+                查看图片
+        </button> -->
+        
+        </div>
+        <div class="form-group">
+            <label for="phone" class="col-sm-1 control-label">手机号码</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="phone" value="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email" class="col-sm-1 control-label">邮箱</label>
+            <div class="col-sm-2">
+                <input type="text" class="form-control" id="email" value="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="tips" class="col-sm-1 control-label">备注</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" rows="4" placeholder="请输入内容" id="tips"></textarea>
+            </div>
+        </div>
+        <div class="form-group bottom_login">
+            <div class="col-sm-offset-1 col-sm-10">
+                <button type="submit" class="btn btn-primary btnn">确认修改</button>
+            </div>
+        </div>
+    </form>
+</div>

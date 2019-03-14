@@ -1,0 +1,63 @@
+<div class="article_container">
+    <div class="articlesearch">
+        <div class="row line1">
+            <div class="col-md-4">
+                <span class="art">ID</span>
+                <input type="text" placeholder="请输入" class="shuru" id="userSearch_id">
+            </div>
+            <div class="col-md-4">
+                <span class="art">用户名</span>
+                <input type="text" placeholder="请输入" class="shuru" id="userSearch_username">
+            </div>
+            <div class="col-md-4">
+                <span class="art">邮箱</span>
+                <input type="text" placeholder="请输入" class="shuru" id="userSearch_email">
+            </div>
+        </div>
+        <div class="row line1 mt15">
+            <div class="col-md-4">
+                <span class="art">性别</span>
+                <div class="dropdown wenzhangbiaoqian">
+                    <div data-toggle="dropdown" id="dropdownMenu1" class="selectbq"> <span id="sexChecked2" value="-1">请选择标签</span> <i
+                            class="glyphicon glyphicon-chevron-down ml30"></i></div>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li role="presentation " class="dropdown-header caidantitle">下拉菜单标题</li>
+                        <li role="presentation">
+                            <a role="menuitem" tabindex="-1" href="#" class="menuSex2" dataId="-1">不限</a>
+                            <a role="menuitem" tabindex="-1" href="#" class="menuSex2" dataId="0">男</a>
+                            <a role="menuitem" tabindex="-1" href="#" class="menuSex2" dataId="1">女</a>
+                        </li>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-search btn-primary searchBtn" id="userSearch"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+        </div>
+        <div class="row line1 mt30 pl15">
+            <button class="btn btn-search btn-primary" id="userDeleteAll">删除</button>
+            <button class="btn btn-search btn-primary" data-toggle="modal" data-target="#myModal_userAdd" id="userAdd">添加</button>
+        </div>
+        <div class="row mt30 plr15">
+            <table class="table table-hover table-bordered tablea">
+                <thead>
+                    <tr>
+                        <th class="juzhong"><input type="checkbox" name="" id="userSelectboxAll"></th>
+                        <th>id</th>
+                        <th>用户名</th>
+                        <th>头像</th>
+                        <th>手机</th>
+                        <th>邮箱</th>
+                        <th>性别</th>
+                        <th>ip</th>
+                        <th>加入时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="userShowContent">
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

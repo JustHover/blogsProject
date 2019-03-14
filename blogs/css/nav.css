@@ -1,0 +1,561 @@
+@charset "utf-8";
+
+/* 以下实际使用若已初始化可删除 .nav height父级需逐级设置为100%*/
+body,
+html {
+    height: 100%;
+    background: #fff
+}
+
+body,
+ul {
+    margin: 0;
+    padding: 0
+}
+
+body {
+    font: 14px "微软雅黑", "宋体", "Arial Narrow", HELVETICA;
+    -webkit-text-size-adjust: 100%;
+}
+
+li {
+    list-style: none
+}
+
+a {
+    text-decoration: none;
+}
+
+/* 以上实际使用若已初始化可删除 */
+
+/* nav */
+.nav {
+    height: 100%;
+    background: #263238;
+    transition: all .3s;
+    padding-right: 0;
+}
+
+.nav a {
+    display: block;
+    overflow: hidden;
+    padding-left: 20px;
+    line-height: 46px;
+    max-height: 46px;
+    color: #ABB1B7;
+    transition: all .3s;
+}
+
+.nav a span {
+    margin-left: 30px;
+}
+
+.nav-item {
+    position: relative;
+}
+
+.nav-item.nav-show {
+    border-bottom: none;
+}
+
+.nav-item ul {
+    display: none;
+    background: rgba(0, 0, 0, .1);
+}
+
+.nav-item.nav-show ul {
+    display: block;
+}
+
+.nav-item>a:before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    width: 2px;
+    height: 46px;
+    background: #34A0CE;
+    opacity: 0;
+    transition: all .3s;
+}
+
+.nav .nav-icon {
+    font-size: 20px;
+    position: absolute;
+    margin-left: -1px;
+}
+
+/* 此处修改导航图标 可自定义iconfont 替换*/
+.icon_1::after {
+    content: "\e62b";
+}
+
+.icon_2::after {
+    content: "\e669";
+}
+
+.icon_3::after {
+    content: "\e61d";
+}
+
+/*---------------------*/
+.nav-more {
+    float: right;
+    margin-right: 20px;
+    font-size: 12px;
+    transition: transform .3s;
+}
+.erji li {
+    padding-left: 30px;
+}
+.nav-more2 {
+    float: right;
+    margin-right: 20px;
+    font-size: 12px;
+    transition: transform .3s;
+    transform: rotate(90deg);
+}
+
+
+/* 此处为导航右侧箭头 如果自定义iconfont 也需要替换*/
+.nav-more::after,
+.nav-more2::after {
+    content: "\e621";
+}
+
+/*---------------------*/
+/* .nav-show .nav-more {
+    transform: rotate(90deg);
+} */
+
+.nav-show,
+.nav-item>a:hover {
+    color: #FFF;
+    background: rgba(0, 0, 0, .1);
+}
+
+.nav-show>a:before,
+.nav-item>a:hover:before {
+    opacity: 1;
+}
+
+/* nav-mini */
+.nav-mini.nav {
+    width: 60px;
+}
+
+.nav-mini.nav .nav-icon {
+    /* margin-left:-2px; */
+}
+
+.nav-mini.nav .nav-item>a span {
+    display: none;
+}
+
+.nav-mini.nav .nav-more,
+.nav-mini.nav .nav-more2 {
+    margin-right: -20px;
+}
+
+.nav-mini.nav .nav-item ul {
+    position: absolute;
+    top: 0px;
+    left: 60px;
+    width: 100%;
+    z-index: 99;
+    background: #3C474C;
+    overflow: hidden;
+}
+
+.nav-mini.nav .nav-item:hover {
+    background: rgba(255, 255, 255, .1);
+}
+
+.nav-mini.nav .nav-item:hover .nav-item a {
+    color: #FFF;
+}
+
+.nav-mini.nav .nav-item:hover a:before {
+    opacity: 1;
+}
+
+.nav-mini.nav .nav-item:hover ul {
+    display: block;
+}
+
+/* 文章 */
+
+.articlesearch {
+    padding: 15px;
+    background: #fff;
+}
+
+.line1 {
+    height: 38px;
+    line-height: 38px;
+}
+
+.art {
+    display: inline-block;
+    padding: 9px 15px;
+    width: 90px;
+    margin: 5px 0;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: right;
+}
+
+.shuru::placeholder {
+    color: #ABB1B7;
+}
+
+.shuru {
+    display: inline-block;
+    width: 60%;
+    padding-left: 10px;
+    outline: none;
+    border: 1px solid #e6e6e6;
+    border-radius: 2px;
+}
+
+.caidantitle {
+    background: #4c94d3 !important;
+    color: #fff !important;
+    height: 38px !important;
+    line-height: 38px !important;
+}
+
+.wenzhangbiaoqian {
+    display: inline-block;
+    width: 60%;
+    padding-left: 10px;
+    outline: none;
+    border: 1px solid #e6e6e6;
+    border-radius: 2px;
+}
+
+.dropdown-menu>li>a {
+    height: 38px !important;
+    line-height: 38px !important;
+}
+.dropdown-menu{
+    width: 100%;
+}
+.selectbq {
+    color: #ABB1B7;
+}
+
+.btn-search {
+    display: inline-block;
+    height: 38px;
+    line-height: 38px;
+    padding: 0 10px;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+    color: #fff;
+    white-space: nowrap;
+    text-align: center;
+    font-size: 14px;
+}
+.searchBtn{
+    margin-left: -65px;
+}
+.ml30 {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+}
+
+.mt15 {
+    margin-top: 15px;
+    overflow: inherit!important;
+}
+
+.pl15 {
+    padding-left: 15px;
+}
+
+.juzhong {
+    text-align: center !important;
+}
+
+.fabu {
+    display: inline-block;
+    height: 38px;
+    line-height: 38px;
+    padding: 0 18px;
+    background-color: #009688;
+    color: #fff;
+    white-space: nowrap;
+    text-align: center;
+    font-size: 14px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    height: 22px;
+    line-height: 22px;
+    padding: 0 5px;
+    font-size: 12px;
+}
+
+.lanse {
+    background: #1E9FFF;
+}
+
+.hongse {
+    background: #FF5722;
+    margin-left: 5px;
+}
+
+th,
+td {
+    text-align: center;
+}
+
+.plr15 {
+    padding: 10px 15px;
+    border-top: 1px solid #eee;
+    background:#fff;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.tablea {
+    width: 95% !important;
+    margin: 0 auto !important;
+}
+
+thead {
+    background: #f2f2f2;
+}
+
+.modal-header1 {
+    height: 50px;
+    line-height: 50px;
+    background: #20222A !important;
+    color: #fff;
+    padding: 0 80px 0 20px;
+    font-size: 14px;
+}
+
+.modal-title1 {
+    line-height: 50px;
+    color: #fff;
+    margin: 0;
+}
+
+.closed1 {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.dio-form {
+    padding: 20px 30px 0 0;
+    width: 480px;
+    height: 415px;
+}
+
+.dio-form-item {
+    margin-bottom: 15px;
+    clear: both;
+}
+
+.clear {
+    clear: both;
+}
+
+.dio-form-label {
+    float: left;
+    display: block;
+    padding: 9px 15px;
+    width: 100px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: right;
+}
+
+.dio-form-inline {
+    float: left;
+    width: 190px;
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.dio-form-input {
+    height: 38px;
+    line-height: 1.3;
+    line-height: 38px\9;
+    border-width: 1px;
+    border-style: solid;
+    background-color: #fff;
+    border-radius: 2px;
+    border-color: #e6e6e6;
+    display: block;
+    width: 100%;
+    padding-left: 10px;
+}
+.select-s {
+    display: inline-block;
+}
+
+.select-input {
+    border: 1px solid #f6f6f6;
+    height: 38px;
+    line-height: 38px;
+    line-height: 38px\9;
+    border-width: 1px;
+    border-style: solid;
+    background-color: #fff;
+    border-radius: 2px;
+    border-color: #e6e6e6;
+    display: block;
+    width: 100%;
+    padding-left: 10px;
+    cursor: pointer;
+}
+
+.fabu_status {
+    float: left;
+    width: 90px;
+    height: 38px;
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    border: 1px solid #3f3f3f;
+    border-radius: 45%;
+}
+
+.radiobox {
+    height: 38px;
+    line-height: 38px;
+}
+
+.card-header {
+    position: relative;
+    height: 42px;
+    line-height: 42px;
+    padding: 0 15px;
+    border-bottom: 1px solid #f6f6f6;
+    color: #333;
+    border-radius: 2px 2px 0 0;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.form-label {
+    width: 130px;
+    float: left;
+    display: block;
+    padding: 9px 15px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: right;
+}
+
+.input-block {
+    margin-left: 130px;
+    min-height: 36px;
+    position: relative;
+}
+
+.form-input {
+    display: inline-block;
+    width: 100%;
+    padding-left: 10px;
+    height: 38px;
+    line-height: 1.3;
+    line-height: 38px\9;
+    border: 1px solid #ccc;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.jieshi {
+    display: inline-block;
+    padding: 9px 0 !important;
+    line-height: 20px;
+    margin-right: 10px;
+    color: #999!important;
+}
+
+#main{
+    height: 850px;
+    overflow-y: auto;
+}
+.file-btn{
+    position: relative;
+}
+.file-input{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+.touxiang{
+    width: 15px;
+    height: 15px;
+}
+.btnSearch{
+    margin-left: -25px;
+}
+.group-flex{
+    display: inherit;
+}
+#titleTop{
+    /* width: 100%; */
+    height: 50px;
+    background: #fff;
+    line-height: 50px;
+    margin-top: 1px;
+    padding-left: 15px;
+}
+
+.zhuye {
+    cursor: pointer;
+    color: #666;
+    margin-left: 15px;
+}
+
+.btnn{
+    margin-left: 65px;
+}
+#uploadForm{
+    margin-left: 2px;
+}
+#Modal_article_content{
+    border: 1px solid #e6e6e6;
+}
+/* 
+.btn-file .findImg{
+    display: block;
+    width: 80px;
+    height: 39px;
+    margin-left: 5px;
+} */
+.btnnew{
+    margin-left: 25px;
+    height: 39px;
+    line-height: 25px;
+}
+.popover-title{
+    text-align: center;
+}
+#havelook{
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+.myImg{
+    width: 100%;
+    height: 100%;
+}
+.popover-content{
+    padding: 2px;
+    height: 100px;
+    width: 100px;
+}

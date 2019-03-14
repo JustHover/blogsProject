@@ -1,0 +1,44 @@
+.form-horizontal{
+    position: absolute;
+    top: 30%;
+    left: 37%;
+    background: lightgrey;
+    padding-top: 20px;
+    padding-right: 45px;
+    border-radius: 20px;
+    box-shadow: 3px 2px 20px #999
+}
+#demo-canvas{
+    width: 100%;
+    height: 100%;
+}
+#success{
+    position: absolute;
+    color: red;
+    margin-bottom: 15.625px;
+    padding:3.125px;
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+    bottom: 120px;
+    right: 15%;
+    font-size: 17.5px;
+}
+.eye{
+    position: absolute;
+    display: block;
+    opacity: 0;
+    width: 20px;
+    height: 20px;
+    top: 8px;
+    right: 10%;
+    z-index: 99;
+    background: url(../images/eye_show.png) no-repeat;
+    background-size:cover; 
+}
+#password{
+    padding-right: 35px;
+}
+.sign a{
+    color: red;
+}

@@ -1,0 +1,29 @@
+@charset "utf-8";
+* {margin:0; padding:0;}
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 { -webkit-text-size-adjust:none;}
+input, textarea, img { vertical-align:middle; font-family:Arial, "Microsoft Yahei";}
+@media screen and (max-device-width: 1.3333rem) {body {-webkit-text-size-adjust:none}}
+@media screen and (max-device-width: 2rem) {body {-webkit-text-size-adjust:none}}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {body {-webkit-text-size-adjust:none}}
+@media only screen and (min-device-width: 3.2rem) and (max-device-width: 4.2667rem) {body {-webkit-text-size-adjust:none}}
+.f14{ font-size: 0.0583rem;}
+html,body{ height: 100%;}
+em,i{font-style:normal;}
+a{
+    color: #333;
+    outline-style: none;
+    text-decoration: none!important;
+}
+form, img, table, td { border:0;}
+ul, ol, li { list-style-type:none; }
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    font-size: 0.05rem;
+    font-weight: normal;
+}
+input, button, select, textarea {
+    border: none;
+    outline: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}

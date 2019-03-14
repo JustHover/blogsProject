@@ -1,0 +1,57 @@
+<div id="article">
+    <div class="articlesearch">
+        <div class="row line1">
+            <div class="col-md-4">
+                <span class="art">文章ID</span>
+                <input type="text" placeholder="请输入" class="shuru" id="articleSearch_id">
+            </div>
+            <div class="col-md-4">
+                <span class="art">作者</span>
+                <input type="text" placeholder="请输入" class="shuru" id="articleSearch_author">
+            </div>
+            <div class="col-md-4">
+                <span class="art">标题</span>
+                <input type="text" placeholder="请输入" class="shuru" id="articleSearch_title">
+            </div>
+        </div>
+        <div class="row line1 mt15">
+            <div class="col-md-4">
+                <span class="art">文章标签</span>
+                <div class="dropdown wenzhangbiaoqian">
+                    <div data-toggle="dropdown" id="dropdownMenu1" class="selectbq"> <span id="tagChecked"
+                            value="" dataTagsId="">请选择标签</span> <i class="glyphicon glyphicon-chevron-down ml30"></i></div>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li role="presentation " class="dropdown-header caidantitle">下拉菜单标题</li>
+                        <li role="presentation" id="tagContent">
+                        </li>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-search btn-primary searchBtn" id="articleSearch"><i class="glyphicon glyphicon-search"></i></button>
+            </div>
+        </div>
+        <div class="row line1 mt30 pl15">
+            <button class="btn btn-search btn-primary" id="articleDeleteAll">删除</button>
+            <button class="btn btn-search btn-primary" data-toggle="modal" data-target="#myModal_articleAdd" id="articleAdd">添加</button>
+        </div>
+        <div class="row mt30 plr15">
+            <table class="table table-hover table-bordered tablea">
+                <thead>
+                    <tr>
+                        <th class="juzhong"><input type="checkbox" name="" id="articleSelectboxAll"></th>
+                        <th>文章id</th>
+                        <th>文章标签</th>
+                        <th>文章标题</th>
+                        <th>作者</th>
+                        <th>上传时间</th>
+                        <th>发布状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="articleShowContent">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
